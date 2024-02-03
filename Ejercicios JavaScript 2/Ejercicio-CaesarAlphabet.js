@@ -1,0 +1,70 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the 'caesarCipher' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts following parameters:
+ *  1. STRING s
+ *  2. INTEGER k
+ */
+
+function caesarCipher(s, k) {
+    // Write your code here
+    let a = Array.from("abcdefghijklmnopqrstuvwxyz")
+    let b = a.splice(k%26)
+    let c = b.concat(a)
+    let n = ""
+
+    for(let i =0; i< s.length; i++){
+        let cur =  s.charAt(i)
+        if((cur >= 'A' && cur <= 'Z') || (cur >= 'a' && cur <= 'z')){
+            let cap = cur <= 'Z'? 65: 97
+            let l = s.charCodeAt(i)-cap
+            if(cur <= 'Z')
+                n = n.concat(c[l].toUpperCase())
+            else
+                n = n.concat(c[l])
+        }else 
+            n = n.concat(cur)
+    }
+    return n
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const n = parseInt(readLine().trim(), 10);
+
+    const s = readLine();
+
+    const k = parseInt(readLine().trim(), 10);
+
+    const result = caesarCipher(s, k);
+
+    ws.write(result + '\n');
+
+    ws.end();
+}
