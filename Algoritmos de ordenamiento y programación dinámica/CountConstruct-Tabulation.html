@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CountConstruct(target, wordBank){ // Creamos la función para determinar cuántas cadenas de caracteres en el arreglo “wordBank”
+                                                   // podrían armar la cadena de caracteres contenida en el “target”.
+
+            const table = Array(target.length + 1).fill(0); // Creamos un arreglo llamado “table” y le asignamos su tamaño dentro del 
+                                                            // paréntesis  del Array(). Se le asigna como tamaño la longitud del “target”  
+                                                            // más 1 para que los índices queden alineados correctamente. Usamos el método
+                                                            // fill() para rellenar el arreglo con ceros. 
+                                                    
+            table[0] = 1; // En este caso, el índice 0 inciaría como una cadena de caracteres vacía. 
+
+            for(let i = 0; i <= target.length; i++){ // Recorremos el arreglo “table” con un ciclo “for”
+                for(let word of wordBank){ // Iteramos a través del arreglo “wordBank” con un “for of” y utilizando la variable “word” para
+                                           // iterar a través de cada elemento dentro del arreglo. 
+
+                    if(target.slice(i, i + word.length) === word){ // Con este “if” buscamos verificar si la palabra coincide con la posición 
+                                                                   // actual de “i”, si los caracteres se alinean. Copio y separo caracteres 
+                                                                   // del “target” y luego, verificamos si su extensión llega hasta la longitud 
+                                                                   // entera de toda la palabra. También verificamos si el pedazo de la 
+                                                                   // cadena de caracteres o los caracteres que hemos cortado y copiado 
+                                                                   // tienen el mismo valor que la variable “word” o si coinciden. 
+
+                        table[i + word.length] += table[i]; // En base a la posición actual de “i” en el recorrido del arreglo, vemos de  
+                                                            // antemano las posiciones que le siguen adelante hasta cubrir toda la longitud 
+                                                            // de la palabra. A esto le sumamos el valor del arreglo “table” en la posición actual
+                                                            // de “i”
+
+                    }
+                }
+            }
+
+            return table[target.length]; // Retornamos el arreglo “table” en la posición del “target” con toda su longitud. 
+        }
+
+        console.log(CountConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+        console.log(CountConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+        console.log(CountConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+        console.log(CountConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+        console.log(CountConstruct('eeeeeeeeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeee', 'eeeee', 'eeeeee']));
+    </script>
+</body>
+</html>

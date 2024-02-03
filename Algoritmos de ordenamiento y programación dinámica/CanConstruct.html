@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CanConstruct(target, wordBank, memo = {}){ // Creamos la función para determinar si los caracteres en el arreglo “wordBank” 
+                                                            // pueden conformar la cadena de caracteres “target” y además, paso como 
+                                                            // parámetro un objeto vacío llamado “memo” que se encargará de almacenar los 
+                                                            // registros de los procesos en patrones, de modo que me permita encontrar soluciones
+                                                            // en base a registros anteriores o procesos repetidos previamente.
+
+            if(target in memo) return memo[target]; // Si el valor del “target” está almacenado dentro del objeto “memo”, retorno el valor del
+                                                    // “target” almacenado dentro del objeto como tal. 
+
+            if(target === ''){
+                return true; // Retorna verdadero o “true” porque una cadena de caracteres vacía ya está construida, no necesita de otros
+                             // caracteres para conformarse.
+            }  
+
+            for(let word of wordBank){ // Usamos un “for of” para recorrer el arreglo “wordBank” mediante la variable “word”.
+
+                if(target.indexOf(word) === 0){ // Verificamos el índice del substring o subcadena de caracteres, que en este caso sería “word”
+                                                // inicia en el índice 0, ya que la cadena de caracteres en cuestión contenida dentro del 
+                                                // arreglo “wordBank” puede o no estar ubicada en el primer índice, dependiendo de cuáles sean 
+                                                // los caracteres del “target”. Esto nos sirve para saber si tenemos o no un prefijo. 
+                    
+                    const suffix = target.slice(word.length); // Declaro una constante llamada “suffix” o ”sufijo” y guardo en esta 
+                                                              // constante el fragmento restante del “target” que pueda obtener 
+                                                              // después de utilizar el método slice(); para obtener el trozo restante de 
+                                                              // caracteres. 
+
+                    if(CanConstruct(suffix, wordBank, memo) === true){
+                        memo[target] = true;
+                        return true; // Si la condición del sufijo o “suffix” es verdadera, 
+                                     // entonces significa que el arreglo de caracteres 
+                                     // “wordBank” sí coincide con el “target” y la palabra 
+                                     // o ”word” con el prefijo se encuentra 
+                                     // dentro del arreglo “wordBank” lo lógico es que se pueda 
+                                     // armar la palabra del “target”.
+                                     // A su vez, le pasamos el objeto “memo” como argumento
+                                     // a la función a la que estamos llamando en forma recursiva
+                                     // dentro de la misma función.   
+                    }  
+                }
+            }
+            
+            memo[target] = false;
+            return false; // Si la condición no es verdadera, entonces significa que el arreglo contenido en “wordBank” no coincide con el 
+                          // “target” de la palabra como tal. 
+
+        }
+
+        console.log(CanConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+        console.log(CanConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+        console.log(CanConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+        console.log(CanConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeee', 'eeeee', 'eeeeee'])); 
+    </script>
+</body>
+</html>

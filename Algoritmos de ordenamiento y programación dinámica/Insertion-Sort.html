@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //  function OrdenPorInsercion(arr){
+        //      for(let i = 1; i <= arr.length; i++){ /* El ciclo inicia en 1 porque debemos empezar a contar desde el segundo índice para hacer la comparación correspondiente */
+        //          let j = i - 1; // Se utiliza “j“ como variable auxiliar para asignarle el valor de “i“
+
+        //          while(j >= 1 && arr[j] < arr[j - 1]){ // Se compaaran los valores mientras “j“ sea menor que la posición anterior 
+        //          /* Intercambiar arr[j] por arr[j - 1] en caso de que arr[j] sea menor que arr[j - 1]*/
+        //          let aux = arr[j]; // Se declara una variable auxiliar que será fundamental en el proceso de intercambio en las posiciones de los elementos dentro del arreglo a ordenar. Esta variable servirá como almacenamiento del valor de arr[j] y para luego intercambiarlo por arr[j - 1]
+        //                            // Aquí es donde “aux“ almacena el valor de arr[j] para luego realizar el intercambio de posiciones.
+        //          arr[j] = arr[j - 1]; // Se realiza el primer intercambio.
+        //          arr[j - 1] = aux; // Se realiza el segundo intercambio, esta vez con “aux“ siriviendo como recipiente del valor de arr[j] para intercambiarlo por arr[j - 1]
+        //          j--; // Es necesario para ordenar el arreglo de la forma correcta, iniciando de menor a mayor. 
+                
+        //          }
+        //      }
+        //  }
+
+        // Primera solución: 
+
+        function InsertionSort(arr){
+            for(let i = 1; i < arr.length; i++){ // Empieza en 1, porque la comparación e intercambio entre los elementos del arreglo incia a partir del segundo índice, ya que la posición 0 no tiene cada a qué compararse a su izquierda. 
+                let j = i - 1; // Donde “j“ tendrá el valor del número anterior a “i“
+                let aux = arr[i]; // La variable “aux“ se va a encargar de guardar la información de “arr“ en la posición de [i].
+
+                while(j >= 0 && arr[j] > aux){ // Aquí es en donde se establece qué condición debe cumplirse para que el algoritmo realice la comparación de valores y el intercambio de posiciones. 
+                    arr[j + 1] = arr[j]; // Si la condición establecida en el ciclo “while“ se cumple, entonces se intercambia la posición entre la posición actual de “i“ representada en “j“ y su posición anterior.
+                    j--; // Se hace el decremento para ordenar de menor a mayor. 
+                }
+
+                arr[j + 1] = aux; // Se realiza el segundo intercambio entre el valor de “i“ y el anterior a “i“
+            }
+
+            return arr; // Se retorna el arreglo ya ordenado. 
+        }
+
+        let arreglo = [23, 1, 10, 5, 3, 4];
+
+        console.log(InsertionSort(arreglo));
+
+        // Segunda solución utilizando reduce() y otros métodos de arreglos en JavaScript.
+
+        function Insertion_Sort(arr){
+            return arr.reduce((a, e) => { // Se va a implementar el método reduce() donde “a“ es el acumulador y “e“ representa el valor actual. La función debe retornar este valor dentro de sí o sino, no se va a ejecutar como se debe. 
+                if(!a.length){     // Mientras “a“ esté vacía, se retorna el valor actual. 
+                    return [e]; // Arreglo donde se retorna el valor actual en caso de que “a“ no contenga ningún elemento dentro de sí. 
+                } 
+                
+                a.some((b, c) => { // Se utiliza el método some() para validar que al menos uno de los elementos cumple con ciertas condiciones.
+                    if(e <= b){
+                        a.splice(c, 0, e) // Este método sólo se va a ejecutar si el valor actual del arreglo es igual o menor que “b“. Le indicamos a splice() desde qué posición debe empezar a eliminar elementos (1er argumento), cuántos elementos queremos que elimine (2do argumento) y qué queremos agregar o conservar (3er argumento.)
+                        return true; 
+                    }
+
+                    if(e > b && c === a.length - 1){ // Se pregunta si “e“ es mayor a “b“ y si “c“ es exactamente igual a toda la longitud del arreglo menos 1, o su valor anterior. 
+                        a.splice(c + 1, 0, e); // Se ejecuta splice() otra vez, pero como primer parámetro, pero esta vez tomando como índice de partida “c + 1“ o toda la longitud del arreglo en sí. 
+                        return true;
+                    }
+
+                    return false; // Se retorna un valor falso en caso de no cumplirse ninguna de las condiciones anteriores. 
+                });
+                
+                return a; // Se retorna el arreglo ya ordenado. 
+            }, []) // Los corchetes vacíos existen en caso de que la primera condición de todas no se cumpla: que el arreglo contenga elementos dentro de sí. 
+        }
+
+        let primos = [13, 2, 19, 5, 3, 7, 11, 23];
+        console.log(Insertion_Sort(primos));
+    </script>
+</body>
+</html>

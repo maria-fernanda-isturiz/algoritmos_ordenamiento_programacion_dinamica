@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function MergeSort(left, right){
+            let i = 0; // Se declara una variable “i“ que se inicializa en 0.
+            let j = 0; // Se declara una variable “j“ que se inicializa en 0.
+            let results = []; 
+
+            while (i < left.length || j < right.length){ // Se realiza una comparación entre los tamaños de “i“ y “j“ para ver si son menores que el tamaño total de la parte derecha e izquierda de un arreglo.
+                if(i === left.length){ // Si el índice en la posición de “i“ es exactamente igual a la longitud total de la izquierda, 
+                    results.push(right[j]); // entonces se introduce en el arreglo la derecha en posición de “j“
+                    j++; // Se incrementa en una unidad. 
+                } else if(j === right.length || left[i] <= right[j]){ // Si “j“ es exactamente igual a la longitud de la derecha o si la izquierda en la posición de “i“ es mayor o igual a la derecha en posición “j“,
+                    results.push(left[i]); // se introduce en el arreglo la izquierda en posición “i“.
+                    i++; // Se incrementa en una unidad. 
+                } else {
+                    results.push(right[j]);
+                    j++;
+                }
+            }
+
+            return results;
+        }
+
+        let arr_1 = [2, 11, 13]; // Cada arreglo debe estar ya ordenado en su forma particular.
+        let arr_2 = [5, 7, 19]; // Cada arreglo debe estar ya ordenado en su forma particular. 
+
+        console.log(MergeSort(arr_1, arr_2));
+    </script>
+</body>
+</html>

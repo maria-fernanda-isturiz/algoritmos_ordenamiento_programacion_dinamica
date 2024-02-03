@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function HowSum(target, numbers){ // Creamos la función para verificar cómo se pueden sumar los números contenidos en el arreglo “numbers”
+                                          // para que den la sumatoria total del “target”.
+
+            const table = Array(target + 1).fill(null); // Creamos un arreglo llamado “table” y le pasamos sus dimensiones totales en el 
+                                                        // método Array() y le sumamos 1 al “target” para que el índice final del arreglo 
+                                                        // quede alineado perfectamente. Usamos el método fill() y rellenamos el arreglo 
+                                                        // con valores nulos o “null”.
+
+            table[0] = []; // Si el arreglo “table” está en la posición 0, siempre se puede generar un arreglo nuevo.
+
+            for(let i = 0; i <= target; i++){ // Iteramos a través del “target” usando un ciclo “for”.
+                if(table[i] !== null){ // Verifico con un “if” si la posición del arreglo “table” en “i” tiene un valor distinto de “null”
+                                       // para ver si puede o no hacer la suma.
+
+                    for(let num of numbers){ // Iteramos a través del arreglo “numbers” usando un “for of”
+                        table[i + num] = [...table[i], num]; // Se suma el “num” a la posición de “i” y se le asigna como valor todo lo que
+                                                             // contiene el arreglo “table” en la posición de “i” y el valor del “num”
+                    }
+                }
+            }
+
+            return table[target];  // Retornamos el arreglo “table” en la posición del “target”.
+        }
+
+        console.log(HowSum(7, [2, 3]));
+        console.log(HowSum(7, [5, 3, 4, 7]));
+        console.log(HowSum(7, [2, 4]));
+        console.log(HowSum(8, [2, 3, 5]));
+        console.log(HowSum(300, [7, 14]));
+    </script>
+</body>
+</html>

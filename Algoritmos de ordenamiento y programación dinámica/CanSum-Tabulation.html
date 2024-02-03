@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function CanSum(target, numbers){ // Creamos la función para verificar si el arreglo “numbers” contiene los números que pueden sumar el
+                                      // número que pasemos como argumento en el “target” al llamar a la función luego de construirla. 
+        
+        const table = Array(target + 1).fill(false); // Creamos el arreglo “table” y dentro del método Array() entre sus paréntesis, le 
+                                                     // indicamos el tamaño o dimensiones que debe tener ese arreglo. El tamaño o dimensión 
+                                                     // del arreglo es el “target + 1” porque los índices de los arreglos inician en 0, por 
+                                                     // lo que el último índice sería un número menos. 
+
+        table[0] = true; // Si el número en el “target” es 0, entonces ya no hay necesidad de realizar ninguna sumatoria, porque no habría
+                         // nada que sumar. 
+
+        for(let i = 0; i <= target; i++){ // Usamos un ciclo “for” para iterar a través del “target”.
+            if(table[i] === true){ // Verifico si la posición actual de “i” en el arreglo es verdadera, para ver si puede hacer la suma.
+                for(let num of numbers){ // Itero a través del arreglo “numbers” usando un “for of”.
+                    table[i + num] = true; // Usamos esta estructura para adelantarnos “num” cantidad de espacios en el arreglo. 
+                }
+            }
+        }
+
+        return table[target]; // Retornamos el arreglo “table” en la posición del “target”.
+    }
+
+    console.log(CanSum(7, [2, 3]));
+    console.log(CanSum(7, [5, 3, 4, 7]));
+    console.log(CanSum(7, [2, 4]));
+    console.log(CanSum(8, [2, 3, 5]));
+    console.log(CanSum(300, [7, 14]));
+</script>
+</body>
+</html>

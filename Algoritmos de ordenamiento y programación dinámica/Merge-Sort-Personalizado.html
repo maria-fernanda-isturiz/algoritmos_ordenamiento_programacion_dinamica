@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.mergeSort = function(){ // Se utiliza el Array.prototype para agregar o añadir nuevas propiedades o métodos a un arreglo dentro de JavaScript
+            if(this.length <= 1 ){ // En esta sección, comparamos si la longitud del arreglo en su totalidad es menor o igual a 1, es decir: Si tiene al menos un elemento dentro del arreglo.
+                return this; // En caso de tener un arreglo vacío o un arreglo de solamente 1 elemento, no hay nada que ordenar, por lo que lo sensato es simplemente devolver el arreglo tal cual está.
+            }
+
+            let half = parseInt(this.length / 2); // Se divide toda la longitud completa del arreglo entre 2 y se transforma el tipo de dato a número entero usando la función parseInt()
+
+            let left = this.slice(0, half).mergeSort(); // Con el método slice() simplemente vamos a copiar lo que tengamos en “half” y guardaremos ese valor dentro de la variable “left” y lo copiaremos desde la posición 0 o primer índice del arreglo.
+                                                        // Podemos usar también mergeSort() para ordenar el arreglo, ya que estamos usando Array.prototype y estamos alterando el prototipo y esta es una propiedad o método que añadimos al arreglo al usar Array.prototype
+
+            let right = this.slice(half, this.length).mergeSort(); // Esta vez, copiamos a partir de “half” en adelante y hasta la longitud completa del arreglo con this.length y todo eso lo guardamos dentro de la variable “right”
+                                                                   // También usamos otra vez mergeSort() para ordenar el arreglo mediante el uso de Array.prototype
+
+            let merge = function(left, right){ // Creamos una función local o interna en forma de variable y le pasamos “left” y “right” como parámetros 
+                let data = []; // Creamos un arreglo inicialmente vacío al que llamaremos “data”
+
+                while (left.length > 0 && right.length > 0) { // Colocamos como condición al ciclo “while” que tanto la parte izquierda o “left” como la parte derecha o “right” del arreglo tengan elementos guardados dentro de ellas.
+                    data.push(left[0] <= right[0] ? left.shift() : right.shift()); // Dentro del método push() hacemos un operador ternario cuya condición será verdadera o falsa dependiendo de la comparación entre los valores de los primeros índices de los arreglos a la izquierda o a la derecha. En base a lo anterior, se agregarán nuevos elementos al arreglo para ordenarse. 
+                }
+
+                return data.concat(left).concat(right); // Se retorna el arreglo con los elementos concatenados tanto de la izquierda o “left” como de la derecha o “right”. 
+            }
+
+            return merge(left, right);
+        }
+
+        let nums = [11, 7, 19, 3, 23, 2, 5, 29, 23];
+
+        console.log(nums.mergeSort());
+    </script>
+</body>
+</html>

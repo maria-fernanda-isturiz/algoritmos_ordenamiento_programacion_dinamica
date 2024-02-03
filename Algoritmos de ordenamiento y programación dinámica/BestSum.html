@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function BestSum(target_sum, numbers, memo = {}){ // Creamos la función para verificar que el resultado dentro del “target_sum” 
+                                                          // sea igual a los números dentro del arreglo “numbers” y también le pasamos un 
+                                                          // objeto vacío que será “memo” y servirá para ir poco a poco almacenando la 
+                                                          // información de los procesos anteriores durante las llamadas recursivas de la 
+                                                          // función. 
+
+            if(target_sum in memo) return memo[target_sum]; // Verificamos si el número que deberíamos obtener como resultado se encuentra 
+                                                            // dentro del objeto “memo”. 
+
+            if(target_sum === 0) return []; // Si el “target_sum” que pasemos como argumento es igual a 0, entonces lo que hay que retornar 
+                                            // en el arreglo “numbers” es un arreglo vacío porque no hay nada que sumar. 
+
+            if(target_sum < 0) return null; // Para efectos de este ejercicio, solamente usaremos números positivos, es decir: números 
+                                            // mayores a 0, por lo que cualquier número negativo que se pase como argumento devolverá como
+                                            // resultado un valor nulo o “null” 
+
+            let shortest_combination = null; // Su valor será nulo o “null” y se actualizará si al comparar las distintas ramas del árbol, se
+                                             // halla una combinación más corta para llegar al resultado de “target_sum”
+
+            for(let num of numbers){ // Recorremos el arreglo “numbers” con un “for of” 
+
+                const remainder = target_sum - num; // Restamos el “target_sum” al “num” que iteramos a través del “for of” y luego, eso lo
+                                                    // guardamos dentro de la constante “remainder”, sustituyendo con “remainder” el 
+                                                    // “target_sum”
+
+                const remainder_combination = BestSum(remainder, numbers, memo); // Creamos una constante llamada “remainder_combination”  
+                                                                                 // para guardar el llamado recursivo de la función. 
+                                                                                 // Se le pasa el objeto “memo” como argumento en donde se
+                                                                                 // almacenan los registros de las llamadas recursivas 
+                                                                                 // y en donde se reutilizan estos procesos para resolver 
+                                                                                 // el problema paso a paso. 
+
+                if(remainder_combination !== null){ // En esta condición verificamos si la llamada recursiva de la función no nos devuelve 
+                                                    // un resultado nulo o “null”
+
+                    const combination = [...remainder_combination, num]; // Si el resultado retornado o devuelto es distinto o no es “null” 
+                                                                         // entonces utilizamos el operador “spread” para copiar todo lo 
+                                                                         // contenido en “remainder_combination” y pasar como segundo 
+                                                                         // argumento el “num” que usamos para recorrer el arreglo “numbers”
+                                                                         // Guarcamos el arreglo en una constante llamada “combination”
+                                                                         
+                    if(shortest_combination === null || combination.length < shortest_combination.length){ // Utilizamos un condicional para 
+                                                                                                           // verificar si el tamaño o 
+                                                                                                           // extensión de la combinación
+                                                                                                           // es más corta que la 
+                                                                                                           // combinación más corta que 
+                                                                                                           // existía hasta ese momento. 
+                                                                                                           // También verificamos si el 
+                                                                                                           // resultado o valor de 
+                                                                                                           // “shortest_combination” es 
+                                                                                                           // nulo o “null” y de ser así, 
+                                                                                                           // también cambiamos ese valor 
+                                                                                                           // nulo o “null” por la combinación
+                                                                                                           // mâs corta y precisa hasta ese 
+                                                                                                           // instante.
+
+                        shortest_combination = combination; // Se le asigna a la variable “shortest_combination” la combinación actual para 
+                                                            // acortarla aún más y devolver la combinación más corta de números posible. 
+
+                    }
+
+                }
+            }
+
+            memo[target_sum] = shortest_combination; // Se almacena el valor de la combinación más corta dentro del objeto “memo”. 
+
+            return shortest_combination; // En caso de que la condición dentro del “for in” no se cumpla y el resultado devuelto por la 
+                                         // llamada recursiva a la función sí sea nulo o “null” nos debe devolver un valor nulo. 
+
+        }
+
+        console.log(BestSum(7, [5, 3, 4, 7]));
+        console.log(BestSum(8, [2, 3, 5]));
+        console.log(BestSum(8, [1, 4, 5]));
+        console.log(BestSum(100, [1, 2, 5, 25]));
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function BubbleSort(arr){
+            let z = arr.length; // En este variable, se almacena el valor de la longitud total del arreglo.
+
+            for(let i = 1; i < z; i++){ // Se necesitan ciclos anidados para poder recorrer el arreglo completo. El ciclo interno lo recorre internamente y lo ordena, y el ciclo externo recorre el arreglo verificando que esté ordenado.
+                for(let j = 0; j < (z - i); j++){ // A “z“ se le resta el valor de “j“, porque “j“ inicia en el segundo índice del arreglo, empieza en 1 y no en 0, y a la longitud total del arreglo se le resta el -1, quedando así el número total de veces que hay que recorrer el arreglo para ordenar el algoritmo.  
+                    if(arr[j] > arr[j + 1]){ // Se compara si el arreglo “arr“ en la posición actual de “j“ es mayor que el siguiente elemento del arreglo.
+                        let aux = arr[j]; // Se declara una variable auxiliar que guarde el valor de “arr“ en la posición de “j“.
+                        arr[j] = arr[j + 1]; // Si la condición estipulada en el “if“ se cumple, entonces se intercambian las posiciones de los elementos dentro del arreglo.
+                        arr[j + 1] = aux; // Se intercambian las posiciones, esta vez utilizando el valor de arr[j] almacenado en la variable “aux“.
+                    }
+                }
+            }
+
+            return arr; // Se debe retornar el arreglo para que se pueda imprimir en consola. 
+        }
+
+        let primos = [13, 2, 19, 5, 3, 7, 11, 23];
+
+        console.log(BubbleSort(primos));
+    </script>
+</body>
+</html>

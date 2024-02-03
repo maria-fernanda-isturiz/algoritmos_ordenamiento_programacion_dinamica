@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CountConstruct(target, wordBank, memo ={}){ // Creamos la función para verificar cuántos strings o cadenas de caracteres 
+                                                             // en el arreglo de strings o cadena de caracteres “wordBank” pueden armar
+                                                             // o construir el string o cadena de caracteres “target” y si coinciden ambos
+                                                             // parámetros de la función. Pasamos también un objeto vacío llamado “memo”
+                                                             // como parámetro para la función. Este objeto guardará el registro de los 
+                                                             // procesos repetitivos y buscará resolver el problema usando registros o 
+                                                             // “memoria” de procesos repetidos previamente.
+
+            if(target in memo) return memo[target]; // Si el valor del “target” ya está contenido dentro del objeto “memo” lo único que 
+                                                    // debe retornar es el valor almacenado en el objeto. 
+
+            if(target === '') return 1; // Si la cadena de caracteres final o “target” está vacía, signfica que no hay nada que verificar
+                                        // por lo que el resultado sensato sería retornar 1 como valor en un caso así. 
+
+            let total_count = 0; // Aquí establecemos un contador para mantener el registro de la cantidad o número de strings o cadenas de 
+                                 // caracteres que conforman el “target” que pasamos como parámetro en la función. Inicializamos el contador en 0.
+                                        
+            for(let word of wordBank){ // Se utiliza un “for of” para iterar a través del arreglo “wordBank” usando la variable “word”
+
+                if(target.indexOf(word) === 0) { // Esto se utiliza para saber en dónde comienza el índice de la cadena de strings “word” y
+                                                 // si tenemos un prefijo de antemano. 
+
+                    const rest = CountConstruct(target.slice(word.length), wordBank, memo) // En esta parte del código está contenido el 
+                                                                                           // resto de lo que sigue después del prefijo, 
+                                                                                           // y lo fragmenta. Aquí se hace el llamado 
+                                                                                           // recursivo de la función CountConstruct() 
+                                                                                           // en donde se le pasa  el fragmento restante 
+                                                                                           // despuês del prefijo y el arreglo en donde  
+                                                                                           // vienen contenidas las cadenas de caracteres que 
+                                                                                           // deberían formar el string o cadena de caracteres
+                                                                                           // “target”. Le pasamos como argumento también
+                                                                                           // el objeto “memo” con el valor del “target”
+                                                                                           // almacenado ya en su “memoria”
+                                                                        
+                    total_count += rest; // Aquí es en donde se almacenan los incrementos o cantidades de strings o cadenas de caracteres dentro de
+                                         // “wordBank” que acumulados o juntos, conformen el “target”. 
+                    
+                }
+            }
+
+            memo[target] = total_count; // Le indicamos a la función que almacene el conteo o sumatoria total de la cantidad de strings o 
+                                        // cadenas de caracteres en “wordBank” que conforman el “target” dentro del objeto “memo”.
+
+            return total_count; // Le indicamos a la función que retorne el conteo o sumatoria total de la cantidad de strings o 
+                                // cadenas de caracteres en “wordBank” que conforman el “target” dentro del objeto “memo”.
+        }
+
+        // console.log(CountConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+        console.log(CountConstruct('abcdef', ['ab', 'abc', 'cd', 'def', '']));
+        //console.log(CountConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+        //console.log(CountConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+        // console.log(CountConstruct('eeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeee', 'eeeee', 'eeeeee']));
+    </script>
+</body>
+</html>

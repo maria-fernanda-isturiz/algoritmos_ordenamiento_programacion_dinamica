@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+        function HowSum(target_sum, numbers, memo = {}){ // Creamos la función para verificar si los números que pasemos después como  
+                                                         // argumentos a la función al invocarla o llamarla logran sumar el resultado  
+                                                         // que pasaremos como argumento al “target_sum” que tenemos ahora como parámetro.
+                                                         // Creamos también un objeto vacío que sería “memo” y que servirá para el proceso
+                                                         // de memoización o “memoization” del algoritmo y para mantener un registro de los
+                                                         // procesos repetitivos de las llamadas recursivas que agilicen la operación. 
+                                                         
+            if(target_sum in memo) return memo[target_sum]; // Verificamos si el resultado o suma de los números dentro del arreglo “numbers”
+                                                            // se encuentra almacenado dentro del objeto “memo”, y de ser así el caso, entonces
+                                                            // retornamos el objeto “memo” con el resultado dentro del objeto. 
+
+            if(target_sum === 0) return []; // Si el número que pasamos como argumento a la función es 0, entonces retornamos un arreglo vacío
+                                            // ya que eso significa que no hay números que sumar. 
+                                            
+            if(target_sum < 0 ) return null; // El resultado sería nulo o “null” ya que no sería posible sumar números menores a 0 sin que
+                                             // todos los números del arreglo también sean negativos, y para efectos de la sumatoria de este
+                                             // ejercicio usaremos solamente números positivos. 
+
+            for (let num of numbers){ // Iteramos a través del arreglo “numbers” utilizando un “for of”
+
+                const remainder = target_sum - num; // En esta constante almacenamos el valor de la resta entre “target_sum” menos el “num”
+                                                    // y el resultado de dicha resta se convierte en el nuevo “target_sum” que ahora se guarda
+                                                    // en la constante “remainder”
+
+                const remainder_result = HowSum(remainder, numbers, memo); // Guardamos la llamada recursiva en una constante llamada 
+                                                                           // “remainder_result” y le pasamos como argumentos el nuevo 
+                                                                           // “target_sum” que estaría almacenado dentro de la constante 
+                                                                           // “remainder”, el arreglo de números a sumar que sería “numbers”
+                                                                           // y el último argumento sería el objeto “memo” que serviría para
+                                                                           // llevar el registro de los procesos similares del algoritmo y para
+                                                                           // agilizar las llamadas recursivas de la función. 
+
+                if(remainder_result !== null){ // Si la función como tal al invocarla NO da como resultado un “null” o nulo, sino que tiene un 
+                                               // valor por encima de 0, entonces retornamos el mismo resultado.
+
+                    memo[target_sum] = [...remainder_result, num]; // Se copian y se trasladan todos los elementos incluidos en el 
+                                                                   // “remainder_result” al nuevo arreglo usando el operador “spread” y le 
+                                                                   // agregamos también el número que esté presente dentro del arreglo 
+                                                                   // “numbers”. Todo esto lo guardamos dentro del “memo” que contiene el 
+                                                                   // número (target_sum) que debería ser el resultado de la suma de los números contenidos
+                                                                   // en el arreglo “numbers”.
+
+                    return memo[target_sum]; // Retornamos el “memo” ya con todo el proceso finalizado. 
+                }
+            }
+
+            memo[target_sum] = null; // Si no se cumplen las condiciones anteriores, entonces retornamos un valor nulo o “null”
+            return null; 
+
+        }
+
+        console.log(HowSum(7, [2, 3]));
+        console.log(HowSum(7, [5, 3, 4, 7]));
+        console.log(HowSum(7, [2, 4]));
+        console.log(HowSum(8, [2, 3, 5]));
+        console.log(HowSum(300, [7, 14]));
+   </script> 
+</body>
+</html>

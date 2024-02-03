@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CanConstruct(target, wordBank){ // Creamos la función para determinar si las cadenas de caracteres o “strings” en el arreglo
+                                                 // “wordBank” pueden construir la cadena de caracteres o “string” del “target” que pasamos
+                                                 // como primer parámetro en la función.
+
+            const table = Array(target.length + 1).fill(false); // Creamos un arreglo llamado “table” y le asignamos sus dimensiones o 
+                                                                //longitud dentro  del paréntesis del Array(), le asignamos como tamaño la 
+                                                                // longitud del “target” sumándole 1 para que encajen los índices. Llenamos 
+                                                                // el arreglo con valores iniciales que sean todos falsos o “false”.
+
+            table[0] = true; // Esto se hace para que de todos modos, siempre se pueda crear aunque sea un arreglo vacío. 
+
+            for(let i = 0; i <= target.length; i++){ // Iteramos a través del arreglo con un ciclo “for”
+                if(table[i] === true){ // Verifico si mi posición actual en el arreglo “table” es verdadera o “true” usando un “if”.
+
+                    for(let word of wordBank){ // Iteramos a través del arreglo “wordBank” usando un ciclo “for of”
+
+                        if(target.slice(i, i + word.length) === word){ // Aquí verificamos con un “if” si el pedazo de la cadena de
+                                                                       // caracteres “target” dentro del arreglo “wordBank” y su longitud
+                                                                       // total equivalen al valor de la variable “word”. Si la longitud total
+                                                                       // desde la posición “i” hasta la longitud total de la variable “word”
+                                                                       // equivalen a la palabra misma o “word”.
+
+                            table[i + word.length] = true; // Si la condición anterior se cumple, entonces nos adelantamos en posiciones  
+                                                           // desde la posición de “i” sumándole la longitud total de la palabra o “word” 
+                                                           // para formar toda la cadena de caracteres o “string”. A este arreglo le 
+                                                           // asignamos el valor de “true” o verdadero. 
+                        }
+                    }
+                }
+            }
+
+            return table[target.length]; // Retornamos el arreglo “table” con la posición que indique la longitud total del “target”
+        }
+
+        console.log(CanConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+        console.log(CanConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+        console.log(CanConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+        console.log(CanConstruct('eeeeeeeeeeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeee', 'eeeee', 'eeeeee']));
+    </script>
+</body>
+</html>

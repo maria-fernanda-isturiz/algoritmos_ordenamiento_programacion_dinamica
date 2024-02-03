@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Fibonacci(num){ // Creamos la función para determinar qué número de la secuencia Fibonacci se corresponde con el parámetro 
+                                 // que le estamos pasando a la función.
+
+            const table = Array(num + 1).fill(0); // Se utiliza el método estático Array() para crear un arreglo que guardaremos dentro de 
+                                                  // la constante “table” y dentro de los paréntesis del método Array() se le indica el tamaño 
+                                                  // o las dimensiones del arreglo en cuestión. Necesitamos asegurarnos de que el último 
+                                                  // índice del arreglo es “n” y sumarle 1, ya que los índices inician en 0. Usamos el método
+                                                  // fill() para rellenar el arreglo vacío con ceros. Le indicamos que rellene todo el arreglo con
+                                                  // ceros.
+                                                
+            table[1] = 1; // Necesitamos indicarle que el primer índice debe ser 1, ya que la secuencia Fibonacci empieza en 1. 
+
+            for(let i = 0; i <= num; i++){ // Usamos un ciclo “for” para iterar a través del arreglo “table”. 
+
+                table[i + 1] += table[i]; // Buscamos la posición de “i” y a partir de ahí, nos situamos en las dos posiciones 
+                                          // delanteras más cercanas a la nuestra, sumándole la posición de “i” en ese instante.
+                table[i + 2] += table[i]; // Aplicamos el mismo principio que en las líneas 24 y 25. 
+            }
+
+            return table[num]; // Se retorna el arreglo con la secuencia Fibonacci que se le ha pasado como argumento al llamar a la función.
+        }
+
+        console.log(Fibonacci(6));
+        console.log(Fibonacci(7));
+        console.log(Fibonacci(8));
+        console.log(Fibonacci(50));
+    </script>
+</body>
+</html>

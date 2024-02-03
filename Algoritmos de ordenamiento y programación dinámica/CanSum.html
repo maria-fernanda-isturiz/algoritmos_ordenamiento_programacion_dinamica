@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CanSum(target_sum, numbers, memo = {}){ // Creamos la función para verificar si algunos de los números dentro del arreglo 
+                                                         //“numbers” da como resultado el número que pasemos después como argumento al 
+                                                         // “target_sum” al llamar o invocar a la función. También pasamos como parámetro 
+                                                         // y posteriormente, como argumento un objeto vacío llamado “memo”.
+                                                         // La función se llama “CanSum” porque lo que buscamos es verificar si dentro del
+                                                         // arreglo “numbers” existen o no números que puedan dar como resultado el “target_sum”
+
+            if(target_sum in memo) return memo[target_sum]; // El número que se pase como argumento en el “target_sum” será el que determine
+                                                            // el valor que retorne la función en las llamadas recursivas, por lo que es este
+                                                            // valor el que debemos almacenar dentro del objeto “memo”
+
+            if(target_sum === 0) return true; // Si el número que le pasemos como argumento al “target_sum” es 0, entonces no hay necesidad de
+                                              // verificar qué números están dentro del arreglo “numbers”, porque no habría nada que sumar si el
+                                              // resultado es 0. 
+
+            if(target_sum < 0) return false; // Si el número pasado como argumento como “target_sum” es negativo, el resultado es falso debido 
+                                             // a que no se pueden sumar números negativos en un arreglo a menos que todos los números del arreglo 
+                                             // sean negativos. Para efectos de las sumas de este ejercicio, usaremos números positivos. 
+                    
+            for (let num of numbers){ // Con esta sintaxis, lo que haremos será iterar a través de todos los elementos del arreglo “numbers”
+
+                const remainder = target_sum - num; // En esta constante guardamos el residuo que quede de la resta entre el número que 
+                                                    // se supone debe dar como resultado la suma del arreglo, menos el número que verificamos
+                                                    // exista dentro del arreglo. El “remainder” se convierte en el nuevo “target_sum”
+
+                if(CanSum(remainder, numbers, memo) === true){ // Aquí se verifica si el arreglo y el resultado de la suma, que en este 
+                                                               // caso sería “remainder” es “verdadero”, que contiene dentro de sí números 
+                                                               // que den como resultado el “remainder” que sería el nuevo “target_sum”. 
+                                                               // Le pasamos también el objeto vacío “memo” como argumento. 
+
+                    memo[target_sum] = true; // Simplemente se le asigna el valor booleano de “true” al memo que contiene el “target_sum”
+                                             // y es ese valor el que debe retornar. 
+
+                    return true; // Si la equivalencia es verdadera, entonces debe retornar el valor “true”. 
+
+                }
+            }
+
+            memo [target_sum] = false; // Retorna falso si no se cumplen las condiciones para la suma. 
+            return false; // De no cumplirse las condiciones anteriores para la suma, entonces retorna un valor de “false” o falso.
+        }
+
+        console.log(CanSum(7, [2, 3]));
+        console.log(CanSum(7, [5, 3, 4, 7]));
+        console.log(CanSum(300, [7, 14]));
+    </script>
+</body>
+</html>

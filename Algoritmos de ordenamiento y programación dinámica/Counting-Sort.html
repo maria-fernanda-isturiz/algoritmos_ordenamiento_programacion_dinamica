@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function countingSort(arr, min, max){ // Este es un algoritmo de ordenamiento que NO depende de comparar los valores del arreglo entre sí, sino que toma en cuenta el valor máximo presente en el arreglo y el número de veces que se repiten los elementos dentro del arreglo.
+             let counters = [];
+             let counter = 0; // Su valor inicial será 0, pero se irá incrementando. 
+
+             for(let i = 0; i < max; i++){ // Usamos un ciclo “for“ para iterar a través del arreglo. 
+                 counters[i] = 0; // Con esto se inicializa el contenido de “counters“ desde la posición de “i“.
+             }
+
+             for(let i = 0; i < max; i++){
+                 counters[arr[i]]++; // Se incrementará el contenido de “counters“ en una unidad de acuerdo a la variable “arr“ en la posición de “i“ en el arreglo. 
+             }
+
+             for(let i = min; i <= max; i++){
+                 while (counters[i]-- > 0) { // Mientras “counters“ en la posición de “i“ sea mayor que cero, es decir: mientras el arreglo contenga elementos dentro de sí.
+                    arr[counter++] = i; // Aquí se incrementa el valor del “counter“ en una unidad dentro del arreglo “arr“ y se le asigna dicho incremento a “i“.
+                 }
+             }
+             return arr;
+         }
+
+    //     function countingSort(datos, minimo, maximo) {
+    //     let contadores = [];
+    //     let contador = 0;
+
+    //     for (let i = 0; i < maximo; i++) {
+    //         contadores[i] = 0;
+    //     }
+
+    //     for (let i = 0; i < maximo; i++) {
+    //         contadores[datos[i]]++;
+    //     }
+
+    //     for (let i = minimo; i <= maximo; i++) {
+    //         while (contadores[i]-- > 0) {
+    //             datos[contador++] = i;
+    //         }
+    //     }
+
+    //     return datos;
+    // }
+
+        let arreglo = [23, 1, 10, 5, 3, 4];
+
+        console.log(countingSort(arreglo, 1, 23));
+    </script>
+</body>
+</html>

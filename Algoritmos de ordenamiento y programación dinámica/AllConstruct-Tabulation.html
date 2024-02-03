@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function AllConstruct(target, wordBank){ // Creamos la función para encontrar todas las posibleas cadenas de caracteres dentro del
+                                                 // arreglo “wordBank” que pueden conformar el “target”
+
+            const table = Array(target.length + 1)
+            .fill()
+            .map(() => []); // Creamos el arreglo “table” y dentro del paréntesis del Array() le asignamos su tamaño 
+                            // y dimensiones totales. Se le asigna como tamaño la longitud del “target”  
+                            // más 1 para que los índices queden alineados correctamente. Usamos el método
+                            // fill() y luego, usamos el método map() para generar un arreglo por cada elemento 
+                            // de “table”. Estos arreglos representan una colección de distintas combinaciones.
+
+            table[0] = [[]]; // El índice 0 del arreglo “table” será un arreglo bidimensional vacío. El arreglo externo representa la 
+                             // colección de combinaciones, y para la cadena de caracteres o “string” vacío, sólo existe una combinación. 
+
+            for(let i = 0; i <= target.length; i++){ // Iteramos a través del arreglo “table” con un ciclo “for”
+                for(word of wordBank){ // Iteramos a través del arreglo “wordBank” con un ciclo “for of”
+                    if(target.slice(i, i + word.length) === word){ // Se compara si el trozo de caracteres cortado del “target” coincide 
+                                                                   // o es igual al valor de la palabra o “word” como tal. 
+
+                        const new_combinations = table[i].map(sub_array => [...sub_array, word]); // Ya que el arreglo “table” es  
+                                                                                                  // multidimensional, lo que hago es recorrer 
+                                                                                                  // con el método map() los subarreglos,  
+                                                                                                  // copio los subarreglos con el operador 
+                                                                                                  // “spread” y agrego la palabra o “word”.
+                                                                                                  // Guardo la información dentro de una 
+                                                                                                  // constante llamada “new_combinations”.
+
+                        table[i + word.length].push(...new_combinations); // Le agrego al arreglo “table” las nuevas combinaciones de cadenas
+                                                                          // de caracteres 
+                    }
+                }
+            }
+
+            return table[target.length]; // Retornamos el arreglo “table” con la longitud total del “target” como su posición. 
+        }
+
+        console.log(AllConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+        console.log(AllConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']));
+        console.log(AllConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+        console.log(AllConstruct('aaaaaaaaaaaaaaaaaz', ['a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa']));
+    </script>
+</body>
+</html>

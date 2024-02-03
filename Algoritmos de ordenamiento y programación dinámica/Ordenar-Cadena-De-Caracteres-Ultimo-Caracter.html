@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function StringSort(string){
+            if(!Array.isArray(string)){ // Se utiliza un “if“ y también la negación (!) para verificar que el “string” sea un arreglo, lo que la negación (!) esencialmente quiere decir, es que si no es un arreglo, no ejecute el código correspondiente.
+                throw TypeError(`El arreglo debe ser un arreglo`); // Lanzamos un error de excepción en caso de que el dato pasado como argumento no sea una cadena de caracteres.
+            }
+
+            if(!string.every(e => typeof e === 'string')){ // Se utiliza el método de arreglo every() para asegurarnos de que todos los 
+                                                          // elementos del arreglo sean de verdad cadenas de caracteres. 
+                                                          // Usamos “typeof“ para verificar el tipo de dato, y asegurarnos de que sea 
+                                                          // un “string“ o cadena de caracteres.
+                                                          // También anteponemos un signo de exclamación (!) como negación antes de utilizar 
+                                                          // el método every() en el arreglo “string” para asegurarnos de que el tipo de dato en 
+                                                          // verdad sí sea un “string” o cadena de caracteres.
+                throw TypeError(`Todos los elementos del arreglo deben ser cadenas de caracteres`); // Lanzamos un error de excepción en caso de que uno de los elementos dentro del arreglo sea un tipo de dato distinto a un “string” o cadena de caracteres
+            }
+
+            return string.sort((x, y) => x.charCodeAt(x.length  - 1) - y.charCodeAt(y.length - 1)); // charCodeAt() es un método de strings que permite obtener el Unicode 
+                                                                                                   // del caracter correspondiente con el índice que se le pasa como argumento a
+                                                                                                   // este método. En este caso, le pasamos como argumento la longitud de la 
+                                                                                                   // cadena “x” y le restamos 1 para llegar hasta el último caracter, ya que 
+                                                                                                   // los “strings” o cadenas de caracteres también tienen índices como los 
+                                                                                                   // arreglos o “arrays” y empiezan en 0, por lo que habría que restar 1 para 
+                                                                                                   // llegar al último elemento.
+                                                                                                   
+                                                                                                   // Le debemos restar también la longitud de “y” debido a que le pasamos como 
+                                                                                                   // argumentos a sort() dos cadenas de caracteres, que en este caso serían “x” y “y” 
+        }
+
+        let lenguajes = ['Python', 'JavaScript', 'C#', 'Go', 'PHP', 'Java']; // Este es el arreglo que contiene las cadenas de caracteres o
+                                                                             // “strings” que vamos a ordenar según el último caracter.
+
+        let num = [24, 65, 'JavaScript', true, false, 90.5]; // Al pasarle este arreglo como argumento, el código lanza el error de excepción
+                                                             // establecido en las dos condiciones “if” de arriba y pasa directo por el “catch”
+                                                             // del bloque “try/catch”
+
+        try {
+            let resultado = StringSort(lenguajes); // En el bloque “try” guardamos la función StringSort() dentro de una variable llamada “resultado” y desde esa variable invocamos a StringSort() y le pasamos como argumento el arreglo “lenguajes”
+            console.log(resultado); // Imprimimos en consola para ver si la función StringSort() funciona como realmente debería. 
+        } catch (e) {
+            console.log(`Error: ${e.message}`); // Este “catch” solamente se va a activar si las dos condiciones establecidas con “if” no 
+                                                // se cumplen o le pasamos un argumento a la función StringSort() que no sea una cadena de
+                                                // caracteres o “string”
+        }
+    </script>
+</body>
+</html>

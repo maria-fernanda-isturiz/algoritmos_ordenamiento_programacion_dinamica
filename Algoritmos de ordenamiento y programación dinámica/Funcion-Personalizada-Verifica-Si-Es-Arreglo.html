@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function isArray(value){ // Se crea la función para verificar si el dato ingresado es o no un arreglo o “array” y le pasamos un parámetro que será “value”
+            return toString.call(value) === '[object Array]' // Se busca evaluar si el valor es o no es un arreglo, dependiendo del resultado de dicha 
+                                                             // evaluación, entonces retornará un valor booleano de verdadero o falso. 
+        }
+
+        console.log(isArray(345)); // Esto da como resultado “false” porque esto es un número entero. 
+        console.log(isArray('345')); // Esto da como resultado “false” porque es una cadena de caracteres o “string”
+        console.log(isArray([3, true, 'green', 8.7, false, 'violet'])); // Esto da como resultado “true” porque esto sí es un arreglo o “array”
+        console.log(isArray('345'.split(''))); // Esto debe devolver “true” porque el método split() convierte una cadena de caracteres o 
+                                               // “string” en un arreglo, de la misma forma en que el método join() convierte un arreglo o
+                                               // “array” en una cadena de caracteres. 
+        
+        console.log(isArray([])); // Aunque se trate de un arreglo vacío, debería retornar como valor un “true” porque sigue siendo en esencia
+                                  // un arreglo o “array”
+
+        console.log(isArray(Array())); // Esto debe dar como resultado “true” porque le estamos mandando como parámetro un objeto de tipo Array()
+    </script>
+</body>
+</html>

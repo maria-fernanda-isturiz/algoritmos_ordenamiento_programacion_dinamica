@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function GridTraveler(m, n, memo = {}){ // Creamos la función para recorrer la grilla o tablero. Los parámetros entre paréntesis 
+                                                // describen las dimensiones de la grilla o tablero y determinan los posibles caminos 
+                                                // para recorrer dicha grilla. Pasamos como parámetro un objeto vacío (memo) que tendrá como 
+                                                // objetivo guardar o registrar todas las llamadas recursivas de una función, agilizando 
+                                                // así la rapidez y eficiencia del algoritmo.  
+
+            const key = m + ',' + n; // Se utiliza la coma (,) como separador entre los dos parámetros concatenados de la función.
+
+            if(key in memo) return memo[key]; // Se verifica si ambos argumentos ya están dentro del objeto “memo” y de ser cierto, entonces
+                                              // retorna el valor de ambos argumentos concatenados y separados por una coma (,) dentro del
+                                              // objeto en cuestión. 
+
+            if (m === 1 & n === 1) return 1; // La razón de esta estructura es que si solamente se cuenta con una casilla dentro del tablero
+                                             // o grilla, entonces el inicio y el final del recorrido están automáticamente dentro de la misma 
+                                             // casilla, por lo que en teoría no habría recorrido que hacer. Si “n” o “m” son igual a 1, entonces
+                                             // estamos hablando de una sola casilla.
+
+            if (m === 0 || n === 0) return 0; // Si una de las dos dimensiones del tablero o grilla es igual a 0, es matemáticamente imposible
+                                              // recorrer las casillas del tablero, ya que si “m” o “n” son iguales a 0, significa que virtualmente
+                                              // hablando, no existe un tablero o grilla para recorrer. 
+
+            memo[key] = GridTraveler(m - 1, n, memo) + GridTraveler(m, n - 1, memo); // Restarle 1 tanto a “m” como a “n” le indica al 
+                                                                                     // programa las direcciones en las cuales puede realizar 
+                                                                                     // el recorrido, solamente yendo hacia abajo y hacia la derecha. 
+                                                                                     // Ir hacia abajo me resta el número de filas e ir hacia la 
+                                                                                     // derecha me resta el número de columnas. 
+                                                                                     // Se guarda la recursividad de la función dentro 
+                                                                                     // del objeto “memo” con su respectiva “key” que se 
+                                                                                     // utiliza en este contexto específico como una 
+                                                                                     // variable que almacena la recursividad.
+
+                                                                                     // Se pasa el objeto “memo” como argumento a la hora de 
+                                                                                     // llamar a la función. 
+                                                                         
+            return memo[key];
+        }
+
+        console.log(GridTraveler(2, 3));
+        console.log(GridTraveler(18, 18));
+    </script>
+</body>
+</html>

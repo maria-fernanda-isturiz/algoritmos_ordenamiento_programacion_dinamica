@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function AllConstruct(target, wordBank, memo= {}){ // Creamos la función para verificar si absolutamente todos los strings o cadenas
+                                                           // de caracteres dentro del arreglo “wordBank” forman el string o cadena de 
+                                                           // caracteres contenida en el “target”. Pasamos también como parámetro un objeto
+                                                           // vacío llamado “memo” que usaremos para almacenar la información del “target”
+                                                           // y procesos recursivos repetidos.
+
+            if(target in memo) return memo[target]; // Si el “target” ya está almacenado dentro del objeto “memo”, entonces retornamos el
+                                                    // valor almacenado.
+
+            if(target === '') return [[]]; // Retornamos un arreglo bidimensional totalmente vacío en caso de no haber cadenas de caracteres
+                                           // dentro del arreglo “wordBank” para construir la cadena de caracteres “target”.
+
+            const result = []; // En este arreglo, se van a almacenar todas las cadenas de caracteres que puedan conformar el “target”
+
+            for(let word of wordBank){ // Iteramos a través del arreglo “wordBank” utilizando la variable “word” y un ciclo “for of”.
+
+                if(target.indexOf(word) === 0){ // Verificamos si el índice de la variable “word” inicia en 0, es decir: verificamos si ya 
+                                                // existe un prefijo.
+
+                    const suffix = target.slice(word.length); // Aquí almacenamos los fragmentos restantes de la cadena de caracteres, o lo
+                                                              // que sería el sufijo o “suffix” del string. 
+                                                              
+                    const suffix_call = AllConstruct(suffix, wordBank, memo); // Se hace la llamada recursiva de la función pasando como
+                                                                              // argumento el sufijo y el  arreglo “wordBank”. Se guarda 
+                                                                              // el llamado recursivo dentro de una constante llamada 
+                                                                              // “suffix_call”. Pasamos el “memo” como argumento.
+
+                    const target_build = suffix_call.map(call => [word,...call]) // Se recorre el “suffix_call” con el método map(), se copia
+                                                                                 // y se itera a través de cada subarreglo, se agrega el prefijo
+                                                                                 // o “word” al frente, y luego se copian los elementos de “call”. 
+                                                                                 // Se utiliza una función dentro del método map() para recorrer
+                                                                                 // cada elemento contenido en el subarreglo.
+                                                                                 
+                    result.push(...target_build); // Se meten dentro del arreglo “result” las cadenas de caracteres de “target_build” 
+                                                  // recorridas con el método map().
+
+                }
+
+            }
+
+            memo[target] = result; // El resultado se guarda en el objeto “memo” que debe contener el “target” y se retorna el resultado.
+            return result;
+
+        }
+
+        console.log(AllConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+        console.log(AllConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']));
+        console.log(AllConstruct('aaaaaaaaaaaaaaaaaz', ['a', 'aa', 'aaa', 'aaaa', 'aaaaa']));
+    </script>
+</body>
+</html>

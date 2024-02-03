@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function SumarMultiplos3y5(){ // Se crea la función para sumar los múltiplos de 3 y 5.
+            let suma = 0; // Se declara una variable llamada “suma”, la inicializamos en 0
+
+            for (let i = 1; i <= 1000; i++) { // Recorremos todo el rango de números entre 1 y 1000 con un ciclo “for” e inicializamos 
+                                              // la variable “i” en un valor de 1 para iniciar desde el número 1 y hasta 1000, mientras 
+                                              // que el valor de “i” sea igual o menor a 1000, el ciclo “for” se va a seguir ejecutando 
+                                              // y se seguirá incrementando el valor de “i” con “i++”
+
+                if(i % 3 === 0 || i % 5 === 0){ // Utilizamos un condicional “if” para verificar que el residuo de la división de uno de 
+                                                // esos números entre 1 y 1000 entre 3 o 5 sea igual a 0. Con este condicional, podemos
+                                                // filtrar aquellos números dentro de ese rango entre 1 y 1000 que realmente sean múltiplos 
+                                                // de 3 o 5. La variable “i” es la que recorre todo el rango y va almacenando en ella los valores
+                                                // de dicho rango. 
+
+                    console.log(i); // Al imprimir el valor de “i” en consola, veremos el rango del 1 al 1000 filtrado, es decir: no veremos 
+                                    // literalmente cada número entre 1 y 1000, sino que veremos únicamente aquellos números dentro de ese rango
+                                    // que al ser divididos entre 3 o 5, el residuo de dicha división queda en 0. 
+
+                    suma += i; // Este es el resultado de sumar al valor actual de la variable “suma” que originalmente había sido inicializada
+                               // en 0 el valor de la variable “i” durante el recorrido del ciclo “for” y solamente se le sumarán aquellos números
+                               // que cumplan con una o las dos condiciones establecidas dentro del condicional “if”
+                }
+            }
+
+            return suma; // La función retorna el valor actualizada y modificado de la variable “suma”, en donde veremos todos los múltiplos de 
+                         // 3 y de 5 sumándose entre sí hasta dar con el resultado final que sería almacenado en la variable “suma”
+        }
+
+        console.log(SumarMultiplos3y5());
+    </script>
+</body>
+</html>

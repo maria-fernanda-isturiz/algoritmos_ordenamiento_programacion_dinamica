@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Nota: El máximo común divisor (MCD) es el número mayor en común que tienen dos o más números comparados entre sí y que al dividir 
+        // los números comparados entre el número mayor que tienen en común como múltiplo, el residuo de la división debe quedar en 0. 
+
+        function MCD(a, b){ // Se crea la función para calcular el máximo común divisor. Le pasamos dos parámetros. 
+            while (a != b) { // Se realiza un ciclo “while” para verificar si “a” es igual o distinto de “b”
+                if(a > b){ // En un condicional “if” se pregunta si “a” es mayor que “b”
+                    a -= b; // De ser cierta esta condición, entonces restamos el valor de “a” menos “b”
+                } else {
+                    b -= a; // Si no se cumple esta condición, entonces restamos el valor de “b” menos el de “a”
+                }
+            }
+
+            return a; // Este sería el máximo común divisor. 
+        }
+
+        console.log(MCD(2, 3));
+        console.log(MCD(7, 14));
+        console.log(MCD(110, 75));
+    </script>
+</body>
+</html>

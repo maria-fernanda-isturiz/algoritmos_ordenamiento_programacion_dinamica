@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Originalmente hecho en PHP.
+
+         let arr = [7, 1, -2, 4, 3, 9, 5];
+
+        function quickSort(arr){
+
+            if(arr.length === 0) return []; // Estas condicionales se colocan ahí para evitar la recursividad infinita y evitar llamar a la función quickSort() indefinidamente.
+            if(arr.length === 1) return arr; // Si el arreglo está vacío, entonces no hay nada que retornar, excepto un arreglo vacío. De lo contrario, siempre va a retornar un arreglo con algún elemento.
+
+            let i = Math.floor(arr.length / 2); // Con el método floor() se redondean los números, con el método count() se determina la longitud
+                                        // total de todo el arreglo. Se divide entre 2 para indicarle que el pivote debe estar en la mitad
+                                        // de la lista. 
+            let pivot = arr[i]; // Debido a que la variable $i se ubicará en la mitad del arreglo, por lo que el pivote sí estaría en la 
+                            // posición de $i. 
+            arr.splice(i, 1); // Indica desde qué posición queremos eliminar elementos de la lista y cuántos elementos queremos
+                                    // eliminar de dicha lista. 
+
+            return [
+                ... quickSort(arr.filter(y => y < pivot)), // Con esto se consigue filtrar a todos los elementos menores que el pivote, llamando a la función quickSort() de nuevo, dicha función a su vez escogerá a otro pivote de ahí. 
+                pivot,
+                ... quickSort(arr.filter(y => y >= pivot)) // Con esto se consigue filtrar a todos los elementos mayores que el pivote, llamando a la función quickSort() de nuevo, dicha función a su vez escogerá a otro pivote de ahí. 
+            ];
+        }
+
+        console.log(quickSort(arr));
+    </script>
+</body>
+</html>

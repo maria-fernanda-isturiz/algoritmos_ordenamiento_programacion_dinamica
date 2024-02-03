@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Fibonacci(num, memo = {}){ // Creamos la función para que nos devuelva la posición del número Fibonacci según el número 
+                                            // que se le pase como argumento la secuencia de números Fibonacci consiste en incrementar 
+                                            // los números de acuerdo a la suma de los números anteriores: 1, 1, 2, 3, 5, 8, 13, 21, 
+                                            // 34, 55, 89. Esto significa que si el número pasado como argumento está ubicado entre el 
+                                            // 1 y el 2, debe retornar 1 por defecto. 
+
+                                            // También le pasamos un objeto de tipo “memo” como parámetro. Esto signfica que si no le paso
+                                            // un segundo argumento a la función Fibonacci() al llamarla, por defecto este función va a crear
+                                            // un objeto JavaScript que estará vacío.
+                                            // El objeto “memo” servirá para almacenar el valor de “n” como la clave, y los valores simplemente
+                                            // serán los valores de retorno o “return” de la función.
+
+            if (num in memo) return memo[num]; // Verifico si “num” se encuentra ya dentro del objeto vacío que sería “memo” y de ser cierto, 
+                                               // entonces retorno o devuelvo el contenido equivalente a la llave o “key” de “memo”. Lo que se
+                                               // está verificando es si existe o no la llave o “key”, que en este caso sería “num” 
+                                               // dentro del objeto “memo”. 
+
+            if(num <= 2) return 1; 
+
+            memo[num] = Fibonacci(num - 1, memo) + Fibonacci(num - 2, memo); // Porque la secuencia Fibonacci aumenta sumando los dos 
+                                                                             // números anteriores y el resultado de dicha suma es el 
+                                                                             // que se coloca como el siguiente número en la secuencia 
+                                                                             // Fibonacci. Estoy usando el objeto “memo” para almacenar 
+                                                                             // el resultado del cálculo de las sumas. 
+                                                                             // Le pasamos el objeto “memo”, como segundo argumento en específico
+                                                                             // que contiene la misma información 
+            
+            return memo[num]; // Se retorna el mismo valor, el mismo cálculo matemático, pero con la diferencia de que los valores de la
+                              // secuencia se van almacenando dentro del objeto “memo”, optimizando así el algoritmo.
+        }
+
+        // Secuencia Fibonacci: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233... 
+
+        // Memoization es el proceso a través del cual, se resuelve un problema o se llega al resultado final utilizando recursión, pero guardando
+        // y manteniendo una memoria (memo) o registro de los resultados o procesos hechos con anterioridad, y en base a ese “memo” o memoria
+        // registrada, se va escalando y optimizando el algoritmo hasta llegar a la solución final. 
+
+        console.log(Fibonacci(9));
+        console.log(Fibonacci(10));
+        console.log(Fibonacci(12));
+        console.log(Fibonacci(50));
+        console.log(Fibonacci(25));
+        console.log(Fibonacci(35));
+    </script>
+</body>
+</html>

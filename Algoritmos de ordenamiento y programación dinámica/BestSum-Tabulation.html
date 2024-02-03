@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function BestSum(target, numbers){ // Creamos la función para determinar cuál sería la suma más eficiente o la mejor en el arreglo
+                                           // “numbers” para llegar al “target”.
+
+            const table = Array(target + 1).fill(null); // El tamaño del arreglo es la suma del “target” más 1 para que el índice final 
+                                                        // del arreglo coincida perfectamente con el ”target”. Llenamos el arreglo vacío con
+                                                        // valores nulos o “null”.
+
+            table[0] = []; // Aquí indicamos que el índice 0 del arreglo sea igual a un arreglo vacío.
+            
+            for(let i = 0; i <= target; i++){ // Iteramos a través del arreglo con un ciclo “for”.
+
+                if(table[i] !== null){ // Aquí indicamos la condición que debe cumplirse si el “target” en la posición de “i” tiene un 
+                                       // valor distinto de “null”. 
+
+                    for(let num of numbers){ // De ser cierta la condición del “if“ anterior, entonces iteramos a través de “numbers”
+                                             // con un “for of”.
+
+                        const combination = [...table[i], num]; // Se guarda un nuevo arreglo en una constante llamada “combination”.
+                                                                // copiamos todos los elementos del arreglo “table” en la posición de 
+                                                                // “i”, además del “num” con el cual estamos recorriendo o iterando a través
+                                                                // del arreglo “numbers”.
+
+                        if(!table[i + num] || table[i + num].length > combination.length){ // Aquí se verifica si la longitud de la posición   
+                                                                                           // actual del arreglo “table” es más larga o grande   
+                                                                                           // que la longitud del arreglo guardado en la 
+                                                                                           // constante “combination”.
+                        }
+
+                        table[i + num] = combination; // Reemplazamos el arreglo con “combination” si la condición anterior se cumple. 
+                    }
+
+                }
+            }
+
+            return table[target]; // Retornamos el arreglo “table” en la posición del “target”.
+        }
+
+        console.log(BestSum(7, [5, 3, 4, 7]));
+        console.log(BestSum(8, [2, 3, 5]));
+        console.log(BestSum(8, [1, 4, 5]));
+        console.log(BestSum(100, [1, 2, 5, 25]));
+    </script>
+</body>
+</html>

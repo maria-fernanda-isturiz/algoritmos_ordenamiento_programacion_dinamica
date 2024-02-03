@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Los números Armstrong son números de “n” cantidad de dígitos, y cada uno de los dígitos al elevarlo a la potencia de la cantidad de  
+        // dígitos que tienen dan como resultado el número original con “n” cantidad de dígitos. 
+        // Ejemplo: 371 = 3^(3) = 27; 7^(3) = 343; 1^(3) = 1; El resultado es 371. En este caso, se eleva al cubo por ser un número con 3 dígitos.
+
+        // Nota importante: Para efectos de este ejercicio, vamos a trabajar con números de 3 dígitos. Sin embargo, los números Armstrong no 
+        // necesariamente deben limitarse sólo a 3 dígitos, ya que pueden tener más y cada dígito que conforma la cifra original debe elevarse 
+        // a la potencia según la cantidad de dígitos que tenga la cifra a calcular. La suma de todos los dígitos elevados a la “n” potencia debe
+        // dar como resultado la cifra original del número que se dividió entre sus dígitos para hacer toda la operación matemática.
+
+        function ArmstrongNumber(number){ // Creamos la función con la cual vamos a resolver el problema. 
+            if(typeof number !== 'number'){ // Con un condicional “if” verificamos que el argumento pasado a la función ArmstrongNumber()
+                                            // sea un número y no un “string” o cadena de caracteres, un valor booleano, undefined o “no
+                                            // definido” o un número decimal o “float”
+
+                throw TypeError(`Solamente puede introducir números`); // Este es el error de excepción que lanzamos en caso de que el dato 
+                                                                       // pasado como argumento a la función ArmstrongNumber() no sea un dato
+                                                                       // numérico.
+            }
+
+            if(!Number.isInteger(number)){ // Utilizamos otro condicional “if” para verificar que el dato numérico sea de verdad un número entero
+                                           // y no un número decimal o “float”, ya que los números Armstrong sí o sí deben ser enteros, porque cada
+                                           // dígito se eleva a la potencia de la cantidad de dígitos que conforman el número original. 
+
+                                           // En este ejercicio, trabajaremos con números de 3 dígitos, así que los dígitos se van a elevar 
+                                           // a la tercera potencia y el resultado individual de cada número se suma para
+                                           // verificar que sea igual al número original de 3 dígitos. 
+
+                                           // Se utiliza el operador lógico ! para negar el valor “true“ de Number.isInteger(number) y verificar si
+                                           // el dato pasado como argumento a esta función ArmstrongNumber() es de verdad un número entero.
+
+                throw TypeError(`El número ingresado debe ser un entero`); // Este es el error de excepción que lanzamos en caso de que el número
+                                                                           // pasado como argumento a la función ArmstrongNumber() no sea un número
+                                                                           // entero.
+            }
+
+            if(number <= 100 || number > 999){ // Aquí se verifica que el número ingresado sea un entero de 3 dígitos y no más de 3 dígitos.
+                                               // Debe ser igual o mayor que 100 y menor o igual a 999. 
+                
+                return null; // Si el número es menor que 100 o es mayor que 999, entonces es un número inválido, por lo tanto, el valor debe
+                             // ser nulo o “null”
+
+            }
+
+            let resultado = String(number).split('').map(c => parseInt(c)).reduce((a, d) => { 
+                return a + Math.pow(d, 3); // Se retorna la suma de cada uno de los dígitos en el arreglo elevados al cubo o a 
+                                           // la tercera potencia en un acumulador que tendrá el valor defintivo de dicha suma.
+
+            }, 0); // Se transforma el dato numérico a un “string” o cadena de caracteres utilizando String()  
+                // y luego, se utiliza el método split() para convertir los “strings” o cadenas de caracteres
+                // en arreglos y se separa la cadena de caracteres por medio de espacios vacíos dentro del arreglo.
+                                                                              
+                // El método split() convierte el “string” o cadena de 
+                // caracteres en un arreglo o “array” y luego se usa 
+                // el método de arreglo map() para recorrer cada caracter 
+                // o dígito y convertir cada dígito por separado en un 
+                // número entero usando el método o función parseInt()
+                // Se utiliza reduce() para reducir los valores del arreglo 
+                // a un solo valor en concreto. Le pasamos dos parámetros: 
+                // un acumulador y un dígito.
+
+            return resultado === number; // Si el resultado es exactamente igual al número pasado como argumento a la función ArmstrongNumber()
+                                         // entonces el número usado como argumento es un número Armstrong. 
+        }
+
+        try {
+            console.log(ArmstrongNumber(225));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(153));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(425));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(407));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(134.56));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber('Hola, soy María'));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(1256));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(205));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(134));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(24));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+
+        try {
+            console.log(ArmstrongNumber(7));
+        } catch (error) {
+            console.log(`Error ${error.message}`);
+        }
+    </script>
+</body>
+</html>

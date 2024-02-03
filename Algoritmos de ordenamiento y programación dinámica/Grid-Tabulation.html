@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Grid(m, n){ // Creamos la función para calcular cuántos recorridos posibles existen dentro de una rejilla, cuadrícula o 
+                             // tablero para llegar de una esquina a otra. Le pasamos dos parámetros a la función, uno que tendrá el 
+                             // número de columnas y el otro tendrá el número de filas. 
+
+            const table = Array(m + 1)
+                          .fill()
+                          .map(() => Array(n + 1).fill(0)); // Creamos el arreglo “table” y le pasamos el tamaño o dimensiones que tendrá,
+                                                            // “m” debe ser el índice máximo del arreglo. Usamos el método fill() para 
+                                                            // rellenar el arreglo y el método map() para recorrerlo. Dentro de map() creamos un
+                                                            // subarreglo que tendrá el número de columnas. Se usa el método fill() para
+                                                            // rellenar el arreglo con ceros en este caso. 
+
+            table[1][1] = 1; // Si el arreglo bidimensional sólo tiene un cubículo, sólo hay una forma de recorrer dicha cuadrícula, por lo
+                             // que retornar el valor de 1 sería la única salida lógica.
+
+            for(let i = 0; i <= m; i++){ // Se utiliza un ciclo “for” anidado para recorrer la matriz o el arreglo bidimensional. El primer 
+                                         // bucle se utiliza para recorrer las filas. 
+
+                for(let j = 0; j <= n; j++){ // Este es el segundo bucle anidado que se utiliza para recorrer las columnas. 
+
+                    const current_element = table[i][j]; // En esta constante guardo la posición actual de “i” y de “j”.
+
+                    if(j + 1 <= n)table[i][j + 1] += current_element; // “j + 1” me incrementa las posiciones a la derecha, en columnas. Se 
+                                                                      // le incrementa la posición del elemento actual o “current_element” 
+                                                                      // que almacena las posiciones actuales de “i” y de “j”. Para asegurarnos
+                                                                      // de no sobrepasar el límite de columnas, usamos un condicional “if” 
+                                                                      // para ponerle como límite el número de columnas que se le ha pasado
+                                                                      // como argumento a la función.
+
+                    if(i + 1 <= m)table[i + 1][j] += current_element; // “i + 1” me incrementa las posiciones hacia abajo, en filas. Se 
+                                                                      // le incrementa la posición del elemento actual o “current_element” 
+                                                                      // que almacena las posiciones actuales de “i” y de “j”. Para asegurarnos
+                                                                      // de no sobrepasar el límite de filas, usamos un condicional “if” 
+                                                                      // para ponerle como límite el número de filas que se le ha pasado
+                                                                      // como argumento a la función.
+                }
+            }
+
+            return table[m][n]; // Se retorna el arreglo con los valores de las columnas y filas pasadas en los argumentos de la función al
+                                // llamarlas. 
+        }
+
+        console.log(Grid(1, 1));
+        console.log(Grid(2, 3));
+        console.log(Grid(3, 2));
+        console.log(Grid(3, 3));
+        console.log(Grid(18, 18));
+    </script>
+</body>
+</html>
