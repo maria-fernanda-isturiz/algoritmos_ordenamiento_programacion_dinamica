@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 10</title>
+    </head>
+    <body>
+        <script>
+            let edad = Number(prompt("Ingrese una edad entre 0 y 110 años"))
+
+            
+                if(edad < 0 || edad > 110){
+                prompt("Por favor, ingrese una edad válida entre 0 y 110 años")
+                
+            } else {
+                if (edad > 0 && edad < 12){
+                alert("Es un niño")
+
+                } else if(edad > 12 && edad < 18){
+                    alert("Es un adolescente")
+
+                } else if (edad > 18 && edad < 60){
+                    alert("Es un adulto")
+
+                } else if (edad > 60 && edad < 110){
+                    alert("Es anciano")
+            }
+
+            }
+        </script>
+    </body>
+</html>

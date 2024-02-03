@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [3, 42, 4, 1, 21, 20, 5, 10];
+
+        function SelectionSort(arr){
+            for(let i = arr.length - 1; i >= 1; i--){ // Se empieza a contar desde el final del arreglo, ya que el número mayor se va al final del arreglo, y porque se compara desde el último elemento del arreglo en forma regresiva hasta llegar al índice[0]. 
+                // Encontrar el máximo entre el segundo índice[0] y el último elemento e intercambiar posiciones. Se harán varios recorridos al arreglo para encontrarlo.
+                // El último elemento se representa con el $arr[i] porque la “i“ representa la posición de $arr durante el recorrido del arreglo, la cual irá cambiando con los recorridos.
+                let mayor = Max(arr, i); // Se manda a llamar la función que calcula el valor máximo del arreglo según cada recorrido.
+                let aux = arr[mayor]; // Se le asigna el valor del índice mayor a una variable auxiliar. 
+                arr[mayor] = arr[i]; // Se asigna el valor de [i] de cumplirse la condición establecida en la función Max()
+                arr[i] = aux; // Se sustituyen e intercambian los valores de [i] y del índice mayor. 
+            }
+        }
+
+        // Función auxiliar para calcular y detectar el índice mayor. 
+        function Max (arreglo, indiceMayor){ // Función para encontrar el número mayor entre el penúltimo elemento (que se irá moviendo de posición a medida que se recorre el arreglo) y el primer índice[0]
+            let indiceMayor = 0;
+            for(let i = 0; i <= indiceMayor; i++){
+                if(arreglo[i] > arreglo[indiceMayor]){
+                    indiceMayor = i;
+                }
+            }
+            return indiceMayor; 
+        }
+
+        console.log(SelectionSort(arr));
+    </script>
+</body>
+</html>

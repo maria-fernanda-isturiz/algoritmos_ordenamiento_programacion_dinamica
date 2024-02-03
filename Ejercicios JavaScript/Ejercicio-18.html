@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 19</title>
+    </head>
+    <body>
+        <script>
+            let numeros = [];
+            let numero = Number(prompt("Ingrese 20 números distintos de cero"))
+            let acu = 0;
+            let mayor = 0;
+            let menor = 0;
+
+            if(numero === 0){
+                prompt("Ingrese un número distinto de cero")
+
+            } else {
+                for(let i = 0; i < 20; i++){
+                    numeros[i] = prompt("Ingrese 20 números distintos de cero")
+                    acu = acu + numeros[i]
+                    promedio = acu / 20
+
+                    if(numeros[i] > mayor){
+                        mayor = numeros[i];
+                    }
+                    if(numeros[i] < menor){
+                        menor = numeros[i];
+                    }
+                }
+
+            }
+
+             alert(`Los números en el vector son ${numeros}.`);
+             alert(`El promedio de los 20 números ingresados es ${promedio}`)
+             alert(`El número mayor es ${mayor}`)
+             alert(`El número menor es ${menor}`)
+         </script>
+    </body>
+</html>

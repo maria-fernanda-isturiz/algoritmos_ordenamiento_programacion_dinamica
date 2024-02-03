@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 7</title>
+    </head>
+    <body>
+        <script>
+            let numeros = [];
+            let numero = Number(prompt("Ingrese 4 números distintos a cero"))
+            let acu = 1
+
+            if(numero === 0){
+                prompt("Ingrese un número distinto a cero, por favor")
+
+            } else if (numero !== 0){
+                for(let i = 0; i < 4; i++){
+                numeros[i] = Number(prompt("Ingrese 4 números distintos a cero"))
+                acu *= numeros[i]
+                }
+                 }
+            
+
+            alert("El resultado de la multiplicación es " + acu)
+
+            // let num1 = Number(prompt("Ingrese el primer valor"))
+            // let num2 = Number(prompt("Ingrese el segundo valor"))
+            // let num3 = Number(prompt("Ingrese el tercer valor"))
+            // let num4 = Number(prompt("Ingrese el cuarto valor"))
+
+            // if(num1 === 0 || num2 === 0 || num3 === 0 || num4 === 0){
+            //     prompt("Por favor, ingrese números válidos distintos a cero")
+            // } else {
+            //     let multiplicacionTotal = Number = num1 * num2 * num3 * num4
+            // }
+
+            // alert("El resultado de la multiplicación es " + multiplicacionTotal)
+            // console.log("El resultado de la multiplicación es " + multiplicacionTotal)
+        </script>
+    </body>
+</html>

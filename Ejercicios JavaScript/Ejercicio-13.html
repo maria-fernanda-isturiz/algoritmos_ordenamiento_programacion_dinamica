@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 13</title>
+    </head>
+    <body>
+        <script>
+            let montoCompra = Number(prompt("Ingrese el monto pagado por la compra"))
+
+            if(montoCompra >= 0 && montoCompra <= 500){
+                alert("No aplica descuento. Paga monto completo")
+                
+            } else if (montoCompra >= 500.01 && montoCompra <= 1000){
+                let descuento1 = montoCompra * 0.05
+                let totalPagar1 = montoCompra - descuento1
+                alert("El total a pagar con descuento de 5% es " + totalPagar1)
+
+            } else if (montoCompra >= 1000.01 && montoCompra <= 7000){
+                let descuento2 = montoCompra * 0.11
+                let totalPagar2 = montoCompra - descuento2
+                alert("El total a pagar con un descuento de 11% es " + totalPagar2)
+
+            } else if (montoCompra >= 7000.01 && montoCompra <= 15000){
+                let descuento3 = montoCompra * 0.18
+                let totalPagar3 = montoCompra - descuento3
+                alert("El total a pagar con un descuento de 18% es " + totalPagar3)
+
+            } else if (montoCompra >= 15000.01){
+                let descuento4 = montoCompra * 0.25
+                let totalPagar4 = montoCompra - descuento4
+                alert("El total a pagar con un descuento del 25% es " + totalPagar4)
+            }
+        </script>
+    </body>
+</html>

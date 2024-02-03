@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 16</title>
+    </head>
+    <body>
+        <script>
+            let notas = [];
+            let nota = Number(prompt("Ingrese un número entre 1 y 10"))
+            let acu = 0
+
+            if (nota < 1 || nota > 10){
+                let nota = Number(prompt("Ingrese un número entre 1 y 10"))
+            } else {
+                for (let i = 0; i < 10; i++){
+                notas[i] = Number(prompt("Ingrese un número entre 1 y 10"))
+                acu = acu + notas[i]
+                promedio = acu / 10
+            }  
+            }
+
+            alert(`El promedio de notas es ${promedio}`)
+            
+        </script>
+    </body>
+</html>

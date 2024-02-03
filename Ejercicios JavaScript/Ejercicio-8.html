@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 8</title>
+    </head>
+    <body>
+        <script>
+            let numeros = [];
+            let n = Number(prompt("Ingrese 3 números distintos de cero"))
+            let mayor = 0;
+            let menor = 0;
+
+            if(n === 0){
+                prompt("Por favor, ingrese un número distinto de cero")
+            } else 
+                for(let i = 0; i < 3; i++){
+                    numeros[i] = prompt("Ingrese 3 números distintos de cero")
+
+                    if(numeros[i] > mayor){
+                        mayor = numeros[i];
+
+                    }
+                    if(numeros[i] < menor){
+                        menor = numeros[i];
+                    }
+                }
+            
+            alert(`Los números son ${numeros}`)
+            alert("El número mayor es: " + mayor)
+            alert("El número menor es: " + menor)
+        </script>
+    </body>
+</html>

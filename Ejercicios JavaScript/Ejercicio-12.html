@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 12</title>
+    </head>
+    <body>
+        <script>
+            let precio = Number(prompt("Ingrese el precio del libro"))
+            let cantidadLibros = Number(prompt("Ingrese la cantidad de libros"))
+
+            if(cantidadLibros > 0 && cantidadLibros < 3){
+                alert("No aplica descuento")
+                
+            } else if(cantidadLibros >= 3){
+                let descuento1 = precio * 0.03
+                let totalPagar1 = precio - descuento1
+                alert("El total a pagar es " + totalPagar1)
+
+            } else if (cantidadLibros <= 10){
+                let descuento2 = precio * 0.05
+                let totalPagar2 = precio - descuento2
+                alert("El total a pagar es " + totalPagar2)
+
+            } else if (cantidadLibros > 10){
+                let descuento3 = precio * 0.10
+                let totalPagar3 = precio - descuento3
+                alert("EL total a pagar es " + totalPagar3)
+            }
+        </script>
+    </body>
+</html>

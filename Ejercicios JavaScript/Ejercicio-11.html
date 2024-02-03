@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 11</title>
+    </head>
+    <body>
+        <script>
+            let nota = Number(prompt("Ingrese una nota entre 1 y 10"))
+
+            if(nota < 0 || nota > 10){
+                prompt("Por favor, ingrese una nota válida entre 1 y 10 para continuar")
+            
+            } else {
+
+                if(nota > 9 && nota < 10){
+                    alert("El resultado es A")
+                } else if (nota > 8 && nota < 8.9){
+                    alert("El resultado es B")
+                } else if (nota > 7 && nota < 7.9){
+                    alert("El resultado es C")
+                } else if (nota > 6 && nota < 6.9){
+                    alert("El resultado es D")
+                } else if (nota > 0 && nota < 5.9){
+                    alert("El resultado es E")
+                }
+            }
+        </script>
+    </body>
+</html>

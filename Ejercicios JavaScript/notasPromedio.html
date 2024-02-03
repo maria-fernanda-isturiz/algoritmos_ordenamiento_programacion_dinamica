@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <title>Calculadora de Promedio de Notas</title>
+</head>
+<body>
+
+<h2>Ingrese las 10 notas del estudiante (1 al 10): Un ejercicio que pude copiar de internet.</h2>
+
+<div>
+  <input type="number" id="notaInput" placeholder="Ingrese una nota">
+  <button onclick="agregarNota()">Agregar Nota</button>
+</div>
+
+<div id="notasIngresadas"></div>
+
+<p>Promedio de Notas: <span id="promedio"></span></p>
+
+<script>
+var notas = [];
+var notasIngresadasDiv = document.getElementById("notasIngresadas");
+var promedioSpan = document.getElementById("promedio");
+
+function agregarNota() {
+  var nota = parseFloat(document.getElementById("notaInput").value);
+
+  if (isNaN(nota) || nota < 1 || nota > 10) {
+    alert("Por favor ingrese una nota válida entre 1 y 10.");
+    return;
+  }
+
+  if (notas.length < 10) {
+    notas.push(nota);
+    document.getElementById("notaInput").value = ""; // Limpiar el campo de entrada
+
+    actualizarNotasIngresadas();
+    
+    if (notas.length === 10) {
+      calcularPromedio();
+    }
+  }
+}
+
+function actualizarNotasIngresadas() {
+  notasIngresadasDiv.innerHTML = "Notas ingresadas: " + notas.join(", ");
+}
+
+function calcularPromedio() {
+  var suma = 0;
+  for (var i = 0; i < notas.length; i++) {
+    suma += notas[i];
+  }
+  var promedio = suma / notas.length;
+  promedioSpan.textContent = promedio.toFixed(2);
+}
+</script>
+
+</body>
+</html>

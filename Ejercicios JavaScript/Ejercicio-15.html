@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 15</title>
+    </head>
+    <body>
+        <script>
+            let salario = Number(prompt("Ingrese su salario"))
+            let horasTrabajo = Number(prompt("Ingrese sus horas trabajadas"))
+
+            if (horasTrabajo >= 40){
+                let descuentoSeguridadSocial1 = salario * 0.0945
+                let salarioTotal1 = salario - descuentoSeguridadSocial1
+                alert("Su salario total a pagar es " + salarioTotal1)
+                
+            } else if (horasTrabajo < 40){
+                let descuentoSeguridadSocial2 = salario * 0.15
+                let salarioTotal2 = salario - descuentoSeguridadSocial2
+                alert("Su salario total a pagar es " + salarioTotal2)
+            }
+        </script>
+    </body>
+</html>

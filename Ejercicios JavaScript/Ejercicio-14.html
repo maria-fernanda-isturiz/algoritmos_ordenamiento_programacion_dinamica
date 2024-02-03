@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 14</title>
+    </head>
+    <body>
+        <script>
+            let angle = Number(prompt("Ingrese el valor de un ángulo entre 1 y 180"))
+
+            if(angle <= 0 || angle > 180){
+                prompt("Introduzca un ángulo válido entre 1 y 180")
+            
+            } else {
+                if(angle < 90){
+                    alert("El ángulo es agudo")
+                } else if (angle === 90){
+                    alert("El ángulo es recto")
+                } else if (angle > 90 && angle < 180){
+                    alert("El ángulo es llano")
+                } else if (angle === 180){
+                    alert("El ángulo es obtuso")
+                }
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 6</title>
+    </head>
+    <body>
+        <script>
+            let notasParciales = [];
+            let notaParcial = Number(prompt("Ingrese 10 notas parciales de 10 estudiantes. Cada nota debe estar entre 1 y 10"))
+            let acu = 0
+            
+                if (notaParcial < 1 || notaParcial > 10){
+                prompt("Por favor, ingresar notas comprendidas entre 1 y 10")
+                } else 
+
+                    for(let i = 0; i < 10; i++){
+                        notasParciales[i] = Number(prompt("Ingrese 10 notas parciales de 10 estudiantes. Cada nota debe estar entre 1 y 10"))
+                        acu = acu + notasParciales[i]
+                        promedio = acu / 10;
+                    }
+             
+            console.log(notasParciales)
+            
+            alert(`La suma de las notas parciales es ${acu} y el promedio del grupo es ${promedio}`)
+        </script>
+    </body>
+</html>
